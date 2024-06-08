@@ -11,11 +11,21 @@ import subprocess
 # AT+CGPS=1  (Activate GPS)
 
 class CommunicationModule():
-    def __init__(self) -> None:
+    async def __init__(self) -> None:
         self.Signal = [0,0]
         self.CPUTemp = 0
         self.GPS = [0,0,0] # [LAT,LONG,Altitude]
-        self.gps = serial.Serial('/dev/ttyUSB2',115200)
+        self.gps=None
+        self.state = False # True when working correctly, False when deactivated
+    
+    async def initialize(self):
+        try:
+            self.gps = serial.Serial('/dev/ttyUSB2',115200)
+        except:
+             print("ERROR: Couldn't initialize the serial connection with the GSM module (/dev/ttyUSB2)")
+             print("Overriding 4G and GPS capabilities...")
+             return
+        self.state = True
         self.gps.flushInput()
         self.SendCommand("AT+CGPS=1")
         _gps=False
@@ -62,6 +72,9 @@ class CommunicationModule():
         
     async def serve(self): # Non-blocking data gathering
         while True:
+            if self.state != True:
+                await asyncio.sleep(0.5)
+                continue
             try:
                 self.CPUTemp = float((await self.AsyncCommand("AT+CPMUTEMP"))[0])
                 await asyncio.sleep(0.1)

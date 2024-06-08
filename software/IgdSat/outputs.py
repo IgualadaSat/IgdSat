@@ -4,7 +4,7 @@ import asyncio
 
 class Outputs():
     def __init__(self) -> None:
-        self.b = PWMOutputDevice(13,True,0.1, 4400)
+        self.b = PWMOutputDevice(13,active_high=True,initial_value=0.1,frequency=4400)
         self.b.value = 0
         self.l=LED(26)
         self.notes = [1100,0,2200,0,2200,0] # bootup sound

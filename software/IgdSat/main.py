@@ -6,9 +6,9 @@ import json
 import websockets
 import subprocess
 
+print("Initializing IgdSat...")
 #IgdSat scripts...
 from outputs import *
-outputs = Outputs()
 
 from sensors import *
 from camera import *
@@ -16,11 +16,26 @@ from APC import APC
 
 class IgdSat():
     def __init__(self) -> None:
-        self.outputs = outputs
-        self.bmp = sensor
-        self.sensirion = sensirion
-        self.CM = CM
-        self.RadSens = radSens
+        self.outputs = Outputs()
+        self.bmp = None
+        self.sensirion = None
+        self.CM = CommunicationModule()
+        self.RadSens = None
+        #DATA = [0,0,0,0,0,0,0,0,0,0] # 0 - co2, 1- temp1, 2- humidity, 3- temp2, 4 - altitude, 
+        #                        #  5 - rad_d, 6 - GpsLat, 7 - GpsLong, 8 - rad_s, 9 - rad_pulses
+        #                        #
+        DATA = { # The data packet structure
+            "U": [0], # Unix time
+            "C": [0], # Co2
+            "T": [0,0,0,0], # Temperature [BME, SCD-30, MPU-temp, CM-temp]
+            "H": [0], # Humidity
+            "A":[0,0], # Altitude [Pressure-based, GPS-based]
+            "P":[0], # Barometric pressure
+            "R": [0,0,0], # Radiation [Dinamic-rad,Static-rad, Pulses]
+            "G": [0,0], # GPS [LAT, LONG]
+            "S": [0,0], # Signal for LTE [RSSI signal, bit error rate]
+            "D": [0] # Debuging [CPU-usage]
+        }
         self.DATA = DATA
         self.Active = False # Active mode means High-Speed data collection during parachute descent
         self.apc = None
@@ -28,10 +43,8 @@ class IgdSat():
 igdsat = IgdSat()
 encoder.igdsat = igdsat
 igdsat.outputs.notes = [1100,2200,1100,2200]
-apc= APC(igdsat)
-igdsat.apc = apc
-apc.print("\nSTARTED\n")
-
+igdsat.apc = APC(igdsat)
+DATA=igdsat.DATA
 # Websocket handler
 async def handler(websocket):
     print("New connection")
@@ -82,7 +95,7 @@ async def main():
     async with websockets.serve(handler, "", 8001):
         #await asyncio.Future()  # run forever
         await run_web_server()
-        await asyncio.gather(  SensorsReading(DATA,sensor,sensirion,CM,radSens, igdsat), CM.serve(), igdsat.outputs.serve(), InternetCheck() )
+        await asyncio.gather(  SensorsReading(igdsat), igdsat.CM.serve(), igdsat.outputs.serve(), InternetCheck() )
 
 
 if __name__ == "__main__":

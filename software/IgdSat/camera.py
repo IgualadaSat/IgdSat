@@ -11,6 +11,7 @@ from libcamera import Transform
 import time
 import simplejpeg
 import random
+import os
 
 PAGE = """\
 <html>
@@ -28,10 +29,10 @@ class StreamingOutput(io.BufferedIOBase):
     def __init__(self):
         self.frame = None
 
-        self.VideoFile = open("/home/igdsat/IgdSat-MPU/VIDEO/%s.mjpeg" % random.randint(0,999999999),"wb")
+        self.VideoFile = open(os.path.expanduser('~') + "/IgdSat-DATA/IMAGES/%s.mjpeg" % random.randint(0,999999999),"wb")
         self.condition = Condition()
 
-    async def Async_write(self, buf):  
+    async def Async_write(self, buf):
         async with self.condition:
             self.frame = buf
             self.condition.notify_all()
@@ -54,7 +55,6 @@ async def handle(request):
     elif request.path == '/stream.mjpg':
         print("returning")
         response = web.StreamResponse()
-        
         response.content_type = 'multipart/x-mixed-replace; boundary=FRAME'
         await response.prepare(request)
         try:
