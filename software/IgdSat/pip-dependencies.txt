@@ -1,0 +1,5 @@
+
+
+sudo pip3 install aiohttp adafruit-circuitpython-bmp280 sensirion_i2c_scd30 sensirion_i2c_adapter  sensirion_i2c_driver websockets psutil gpiozero
+
+#picamera2 requires particular installation: https://github.com/raspberrypi/picamera2

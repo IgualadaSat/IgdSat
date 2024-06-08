@@ -1,0 +1,2 @@
+The CM-v5-cover must be 3d printed with -0.15mm or -0.2mm horitzontal expansion in order to fit in the main module.
+There's no tolerance added on the cover and therefore you should have to test what works best for you.

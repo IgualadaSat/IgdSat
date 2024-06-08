@@ -1,0 +1,5 @@
+The MPU-v5-CameraSupportWide only works for the Raspberry Pi Camera Module v3 Wide, because the camera lens is bigger. 
+For non-Wide models, use the standard version MPU-v5-CameraSupport.
+
+You should 3d print the pieces with the predominant flat surface touching the buildplate. 
+In the case of the MPU-v5-Cover it is already correctly oriented, for this piece you may want to reduce the printer speed and (maybe) add a brim due to the small flat surface.

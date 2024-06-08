@@ -1,0 +1,2 @@
+You can use 100-20% infill but 100% is recommended.
+The main PM-v2 is already oriented correctly for 3D printing

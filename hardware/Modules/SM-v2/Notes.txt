@@ -1,0 +1,3 @@
+This is the most dispensable/modifiable module.
+Newer versions of this module ( using other sensors ) will be developed later on.
+The SM-v2-Cover is the only piece of IgdSat that needs supports to 3D print, you should flip it upside-down and add the most basic support with a little of brim also.

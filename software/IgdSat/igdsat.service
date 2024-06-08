@@ -1,0 +1,11 @@
+[Unit]
+Description=IgdSat-MPU-v4
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/bin/su -c "/usr/bin/python3 /home/igdsat/IgdSat-MPU/main.py" igdsat
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
