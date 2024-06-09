@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <title>Mapa GPS</title>
+  
+  <style>
+    :root {
+        --white: #fff;
+        --black: linear-gradient(to bottom right, #001, #000, #000); 
+    }
+    * {
+        background: #0000;
+        font-family:  Consolas, Fira Code,"Comic Sans MS", "Roboto", inconsolata, sans-serif;
+        font-size: 16px;
+        transition-duration: 100ms;
+        cursor: default;
+        padding: 0;
+    }
+    h1.darkmode{
+        font-weight: bold;
+        color: var(--white);
+        width: calc(100% - 0);
+        font-size: 24px;
+        border-bottom: solid 1px var(--white);
+    }
+
+    h1.lightmode{
+        font-weight: bold;
+        color: #fff;
+        width: calc(100% - 0);
+        font-size: 24px;
+        background: linear-gradient(to right, #07a, #0ffa, #0ffa);
+    }
+    button.darkmode, input.darkmode, textarea.darkmode {
+
+        color: #fff;
+        background: #0003;
+        border: 1px solid #fff0;
+        cursor: pointer;
+        height: 32px;
+    }
+    button.lightmode, input.lightmode, textarea.lightmode {
+              color: #fff;
+        background: #0003;
+        border: 2px solid #fff1;
+        border-radius: 5px;
+        cursor: pointer;
+        height: 32px;
+    }
+
+    button.darkmode:hover , input.darkmode:hover {
+        border: 2px solid var(--white);
+    }
+
+    button.lightmode:hover , input.lightmode:hover {
+        border: 2px solid #0ffa;
+    }
+
+    body { margin: 0;}
+    #map { height: calc(100vh - 128px);}
+
+    body.darkmode{
+      margin: auto;
+      padding: 0;
+      background: var(--black); 
+      /*linear-gradient(to bottom right, #21f, #52f, #75f);*/
+      /*linear-gradient(to bottom right, #f20, #f50, #f70);*/
+      /*linear-gradient(to bottom right, #f12, #f25, #f57);*/
+      /*linear-gradient(to bottom right, #012, #025, #057);/*
+      /*linear-gradient(to bottom right, #210, #520, #fa0);*/
+    }
+    body.lightmode{
+      margin: auto;
+      padding: 0;
+      background: linear-gradient(to bottom right, #21f, #25f, #27f); 
+    }
+
+    #container{
+      display: grid;
+    }
+
+    .buttons{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      height: 32px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div>
+      <h1>Choords:</h1>
+
+      <div class="buttons">
+          <button id="downloadButtonJSON">Descargar JSON</button>
+          <button id="downloadButtonCSV">Descargar CSV</button>
+          <button id="CLEAR">Clear data</button>
+      </div>
+    </div>
+
+    <div id="map"></div>
+  </div>
+  <script src="../src/style.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script type="module" src="../src/gps.js"></script>
+</body>
+</html>
+
+
+

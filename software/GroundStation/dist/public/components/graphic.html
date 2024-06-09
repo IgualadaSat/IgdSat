@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    <style type="text/css">
+        #menu {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        #body {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+            grid-gap: 10px;
+            overflow: visible;
+        }
+        body{
+		    padding: 0;
+		    overflow-y: scroll;
+  			overflow-x: hidden; 
+		    height: 100%;
+		}
+		#litles{
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
+		canvas{
+			height: auto;
+		}
+		.buttons{
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		}
+		button{
+			color: #fffa;
+		}
+        .gOption{
+            background: #fff;
+        }
+        .selection{
+            background: #f000;
+            height: 30px;
+            width: 50%;
+            float: left;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+</head>
+<body>
+
+<div id="body">
+    <h1>Gráficos:</h1>
+    <div class="buttons">
+    	<button id="downloadButtonJSON">Descargar JSON</button>
+        <button id="downloadButtonCSV">Descargar CSV</button>
+    	<button id="CLEAR">Clean graphs</button>
+    </div>
+    <div id="litles">
+    	<div><p>CO2</p><input type="color" style="float: left;" value="#FF204E"><div class="selection"></div>
+    	<canvas width="500px" height="400px" class="graph" id="C" data-col="#ff0"></canvas>
+            <div class="gOptions">
+        		<div class="buttons"><button id="CO2JPG">Descargar JPG</button>
+    		    <button id="CO2PNG">Descargar PNG</button></div></div>
+    	   </div>
+        <div><p>Radiación</p><input type="color" style="float: left;" value="#15F5BA"><div class="selection"></div>
+    	<canvas width="500px" height="400px" class="graph" id="R" data-col="#ff0"></canvas>
+            <div class="gOptions">
+        		<div class="buttons"><button id="RadiacionJPG">Descargar JPG</button>
+    		    <button id="RadiacionPNG">Descargar PNG</button></div></div>
+    	   </div>
+        <div><p>Humedad</p><input type="color" style="float: left;" value="#865DFF"><div class="selection"></div>
+    	<canvas width="500px" height="400px" class="graph" id="H" data-col="#ff0"></canvas>
+            <div class="gOptions">
+        		<div class="buttons"><button id="PresionJPG">Descargar JPG</button>
+    		    <button id="PresionPNG">Descargar PNG</button></div></div>
+    	   </div>
+        <div><p>Temperatura</p><input type="color" style="float: left;" value="#FF6363"><div class="selection"></div>
+    	<canvas width="500px" height="400px" class="graph" id="T" data-col="#ff0"></canvas>
+            <div class="gOptions">
+        		<div class="buttons"><button id="TemperaturaJPG">Descargar JPG</button>
+    		    <button id="TemperaturaPNG">Descargar PNG</button></div></div>
+    	   </div>
+        <div><p>Altura</p><input type="color" style="float: left;" value="#FAEF5D"><div class="selection"></div>
+    	<canvas width="500px" height="400px" class="graph" id="A" data-col="#ff0"></canvas>
+            <div class="gOptions">
+        		<div class="buttons"><button id="AlturaJPG">Descargar JPG</button>
+    		    <button id="AlturaPNG">Descargar PNG</button></div></div>
+            </div>
+        <div><p>Presión</p><input type="color" style="float: left;" value="#FF004D"><div class="selection"></div>
+        <canvas width="500px" height="400px" class="graph" id="P" data-col="#ff0"></canvas>
+            <div class="gOptions">
+                <div class="buttons"><button id="PresionJPG">Descargar JPG</button>
+                <button id="PresionPNG">Descargar PNG</button></div></div>
+            </div>
+    </div>
+
+    <espacio></espacio>
+</div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+<script type="text/javascript" src="../src/style.js"></script>
+<script type="module" src="../src/graphic.js"></script>
+
+<script type="text/javascript">
+
+let buttonDivs = document.querySelectorAll(".buttons");
+
+buttonDivs.forEach(buttonDiv => {
+    let buttons = buttonDiv.querySelectorAll("button");
+
+    let canvasId = buttonDiv.previousElementSibling.id;
+    const canvas = document.getElementById(canvasId);
+
+    buttons[0].addEventListener('click', function () {
+        const ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = "#fff2";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        domtoimage.toJpeg(canvas, { quality: 0.95 }).then(function (dataUrl) {
+            const a = document.createElement('a');
+            a.href = dataUrl;
+            a.download = 'grafico.jpg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+    });
+
+    buttons[1].addEventListener('click', function () {
+        domtoimage.toBlob(canvas).then(function (blob) {
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'grafico.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+    });
+});
+
+</script>
+
+</html>

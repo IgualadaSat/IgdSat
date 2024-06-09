@@ -1,0 +1,16 @@
+{
+    "scales": {
+        "x": {
+            "type": "linear",
+            "position": "bottom",
+            "ticks": {
+                "min": 0,
+                "max": 14400
+            }
+        },
+        "y": {
+            "type": "linear",
+            "position": "left"
+        }
+    }
+}

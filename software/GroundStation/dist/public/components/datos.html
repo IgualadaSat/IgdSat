@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../main.css">
+	<title></title>
+</head>
+<body>
+
+<div id="body">
+	
+<h1>DATA:</h1>
+
+<b>BAT-VOLTAGE: </b><label id="BAT-VOLTAGE">-</label>
+<hr>
+<b>LTE-RSSI: </b><label id="LTE-RSSI">-</label>
+<b>LTE-BER: </b><label id="LTE-BER">-</label>
+<hr>
+<b>CPU-USAGE: </b><label id="CPU-USAGE">-</label>
+<hr>
+<b>CPU-TEMP: </b><label id="CPU-TEMP">-</label>
+<b>CM-TEMP: </b><label id="CM-TEMP">-</label>
+<hr>
+<b>RAD-PULSES: </b><label id="RAD-PULSES">-</label>
+<b>RAD-DINAMIC: </b><label id="RAD-DINAMIC">-</label>
+<b>RAD-STATIC: </b><label id="RAD-STATIC">-</label>
+<hr>
+<b>PRESSURE-ALTITUDE: </b><label id="PRESSURE-ALTITUDE">-</label>
+<b>GPS-ALTITUDE: </b><label id="GPS-ALTITUDE">-</label>
+
+</div>
+
+</body>
+
+<script type="text/javascript" src="../src/style.js"></script>
+<script type="text/javascript">
+	
+setInterval(() => {
+    const parentWindow = window.parent;
+    if (parentWindow && parentWindow.DATA) {
+        const DATA = parentWindow.DATA
+        document.querySelector("#LTE-RSSI").innerHTML = parentWindow.DATA["S"][0];
+        document.querySelector("#LTE-BER").innerHTML = parentWindow.DATA["S"][1];
+        document.querySelector("#CPU-USAGE").innerHTML = parentWindow.DATA["D"][0];
+        document.querySelector("#CPU-TEMP").innerHTML = parentWindow.DATA["T"][2];
+        document.querySelector("#CM-TEMP").innerHTML = parentWindow.DATA["T"][3];
+        document.querySelector("#RAD-PULSES").innerHTML = parentWindow.DATA["R"][2];
+        document.querySelector("#RAD-DINAMIC").innerHTML = parentWindow.DATA["R"][0];
+        document.querySelector("#RAD-STATIC").innerHTML = parentWindow.DATA["R"][1];
+        document.querySelector("#PRESSURE-ALTITUDE").innerHTML = parentWindow.DATA["A"][0];
+        document.querySelector("#GPS-ALTITUDE").innerHTML = parentWindow.DATA["A"][1];
+
+        //radio
+        document.querySelector("#LTE-RSSI_r").innerHTML = parentWindow.DATA["S"][0];
+        document.querySelector("#LTE-BER_r").innerHTML = parentWindow.DATA["S"][1];
+        document.querySelector("#CPU-USAGE_r").innerHTML = parentWindow.DATA["D"][0];
+        document.querySelector("#CPU-TEMP_r").innerHTML = parentWindow.DATA["T"][2];
+        document.querySelector("#CM-TEMP_r").innerHTML = parentWindow.DATA["T"][3];
+        document.querySelector("#RAD-PULSES_r").innerHTML = parentWindow.DATA["R"][2];
+        document.querySelector("#RAD-DINAMIC_r").innerHTML = parentWindow.DATA["R"][0];
+        document.querySelector("#RAD-STATIC_r").innerHTML = parentWindow.DATA["R"][1];
+        document.querySelector("#PRESSURE-ALTITUDE_r").innerHTML = parentWindow.DATA["A"][0];
+        document.querySelector("#GPS-ALTITUDE_r").innerHTML = parentWindow.DATA["A"][1];
+    }
+}, 500);
+
+</script>
+
+</html>

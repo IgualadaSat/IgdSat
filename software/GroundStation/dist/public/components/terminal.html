@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>debug</title>
+	<link rel="stylesheet" type="text/css" href="../main.css">
+	<style type="text/css">
+		#inputs{
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			height: 45px;
+		}
+		#command-line{
+			grid-column: span 2;
+		}
+		#terminal{
+			width: calc(100% - 20px);
+			height: 60%;
+		}
+	</style>
+</head>
+<body>
+
+<div id="body">
+
+<h1>Debug:</h1>
+
+	<div id="inputs">
+		<input type="text" id="command-line"><button id="submit">submit</button>
+	</div>
+	<br>
+	<textarea id="terminal" spellcheck="false"></textarea>
+
+</div>
+
+</body>
+
+<script type="module" src="../src/terminal.js"></script>
+<script type="text/javascript" src="../src/style.js"></script>
+
+</html>

@@ -1,0 +1,48 @@
+{
+    "tooltip": {
+        "trigger": "axis",
+        "axisPointer": {
+          "type": "cross",
+          "label": {
+            "backgroundColor": "#6a7985"
+          }
+        }
+      },
+    "emphasis": {
+        "focus": "series"
+      },
+    "toolbox": {
+        "feature": {
+          "dataZoom": {
+            "yAxisIndex": "none"
+          }
+        }
+    },
+    "dataZoom": [
+        {
+          "type": "inside",
+          "start": 0,
+          "end": 100
+        },
+        {
+          "start": 0,
+            "end": 100
+        }
+    ],
+    "xAxis": {
+        "type": "category",
+        "data": [],
+        "boundaryGap": false
+    },
+    "yAxis": {
+        "type": "value"
+    },
+    "series": {
+        "data": [],
+        "type": "line",
+        "smooth": false,
+        "areaStyle": {
+            "color": "#fff"
+        }
+    }
+}

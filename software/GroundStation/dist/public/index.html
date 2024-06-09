@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>IGUALADA-SAT</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="icon" href="favicon.jpg" type="image/x-icon">
+	<style type="text/css">
+		body.darkmode{
+			margin: auto;
+			padding: 0;
+			/*background: linear-gradient(to bottom right, #21f, #25f, #27f);*/
+			background: #070F2B;
+			/*linear-gradient(to bottom right, #21f, #52f, #75f);*/
+			/*linear-gradient(to bottom right, #f20, #f50, #f70);*/
+			/*linear-gradient(to bottom right, #f12, #f25, #f57);*/
+			/*linear-gradient(to bottom right, #012, #025, #057);/*
+			/*linear-gradient(to bottom right, #210, #520, #fa0);*/
+		}
+		body.lightmode{
+			margin: auto;
+			padding: 0;
+			background: linear-gradient(to bottom right, #21f, #25f, #27f); 
+		}
+		header{
+			background: #0000;
+			display: flex;
+		}
+		.windows.darkmode{
+			/*background: var(--white);*/
+			color: #fff;
+			background: #000;
+			width: calc(100vw/3);
+			float:left;
+			padding: 6px;
+			cursor: pointer;
+		}
+		.windows.lightmode{
+			color: #fff;
+			background: #000;
+			width: calc(100vw/3);
+			float:left;
+			padding: 6px;
+			cursor: pointer;
+		}
+		.windows.darkmode:hover {
+			color: #000;
+			background: #FF204E;
+		}
+		.windows.lightmode:hover {
+			color: #fff;
+			background: #0000;
+		}
+		#container{
+			display: flex;
+			margin: auto;
+			padding: 0;
+			display: grid;
+			height: calc(100vh - 64px);
+			grid-template-columns: repeat(3, 1fr);
+			justify-content: center;
+		}
+		#footer {
+		    position: fixed;
+		    bottom: 0;
+		    left: 0;
+		    width: 100vw;
+		    height: 32px;
+		    background-color: #0000; /* Puedes cambiar el color de fondo según tus preferencias */
+		    color: #fff; /* Puedes cambiar el color del texto según tus preferencias */
+		    text-align: left;
+		    line-height: 32px; /* Alinea verticalmente el texto en el centro */
+		}
+		#left-menu{
+			grid-column: span 2;
+		}
+		#left-menu iframe{
+			overflow: visible;
+		}
+		#right-menu{
+			display: grid;
+			grid-template-rows: 1fr;
+			padding: 0;
+			margin: auto;
+		}
+		#connecting{
+			position: absolute;
+			left: 0;
+			right: 0;
+			width: 100vw;
+			height: 100vh;
+			background: #0005;
+			z-index: 10;
+		    padding-top: 40vh;
+		    pointer-events: none;
+		   	visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+
+<div id="connecting">
+
+<h1 style="text-align: center;font-size: 40px; border: none;transition-duration: 300ms;">connecting...</h1>
+<script type="text/javascript">
+
+window.connScreen = document.querySelector("#connecting");
+let t = document.querySelector("#connecting h1");
+setInterval(()=>t.innerHTML.length>=13?t.innerHTML="connecting":t.innerHTML+=".",700);
+
+</script>
+
+</div>
+
+<header>
+
+<b class="windows" onclick="window.open('components/tresd.html', '_blank', 'width=500,height=500')">3d</b>
+<b class="windows" onclick="window.open('components/video.html', '_blank', 'width=640,height=480')">Video</b>
+<b class="windows" onclick="a=window.open('components/gps.html', '_blank', 'width=500,height=500');a.global=window">GPS</b>
+
+</header>
+
+<div id="container">
+
+<!--<div id="footer">
+	<b>Tema:</b><input id="tema" type="checkbox" name="">
+</div>-->
+
+<div id="left-menu"	>
+	<iframe id="graphs" src="components/graphic.html"></iframe>
+</div>
+<div id="right-menu">
+	<div id="datos">
+		<iframe src="components/datos.html"></iframe>
+	</div>
+</div>
+
+</div>
+
+</body>
+
+<script type="text/javascript" src="src/style.js"></script>
+
+<script type="text/javascript">
+	
+document.addEventListener("DOMContentLoaded", function() {
+	if (location.protocol === 'file:') {
+		alert("Esta app se tiene que correr en un servidor, si no, no funciona. puedes usar node con '$ node server.js'");
+	}
+});
+
+</script>
+<!--
+<script type="text/javascript">
+
+let checkbox = document.querySelector("#tema");
+
+checkbox.addEventListener("change", () => {
+    document.lm ? DARKMODE() : LIGHTMODE();
+});
+
+</script>
+-->
+
+<script type="module" src="./src/ws.js"></script>
+
+</html>

@@ -1,0 +1,179 @@
+:root {
+    --white: #FF204E; /*15F5BA, FF204E*/
+    --black: linear-gradient(to bottom right, #001, #000, #000); 
+}
+
+body::-webkit-scrollbar {
+  width: 0; /* Oculta la barra de desplazamiento en navegadores webkit */
+} 
+
+* {
+    background: #0000;
+    font-family: "Roboto", inconsolata, Consolas, sans-serif;
+    font-size: 16px;
+    color: #F0F3FF;
+    transition-duration: 0ms;
+    cursor: default;
+    padding: 0;
+}
+
+canvas{
+    background: #000a;
+}
+
+::selection {
+  background-color: var(--white); /* Color de fondo durante la selección */
+  color: #000; /* Color del texto durante la selección */
+}
+
+::-moz-selection {
+  background-color: var(--white); /* Para navegadores basados en Gecko (por ejemplo, Firefox) */
+  color: #000; /* Para navegadores basados en Gecko (por ejemplo, Firefox) */
+}
+
+body, div, header, iframe, canvas{
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+}
+
+div, iframe{
+    height: 100%;
+    width: 100%;
+    border-radius: 2px;
+}
+
+canvas{
+  background: #0005;
+  width: 100vw;
+}
+
+label, b, .window, h1, h2, h3, input, button, textarea,p{
+    padding: 0;
+    padding-left: 10px;
+}
+
+#body.darkmode {
+    color: #D895DA;
+    background: linear-gradient(to top, #0000, #C4E4FF22, #C4E4FF22);
+    height: calc(100% - 32px);
+}
+#body.lightmode {
+    /*background: linear-gradient(to top, #fff0, #fff2, #fff2);*/
+    background: linear-gradient(to top, #0000, #3335, #3335);
+    height: calc(100% - 32px);
+}
+
+iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+header {
+    top: 0;
+    width: 100%;
+    display: grid;
+    height: 32px;
+}
+
+header .window {
+    padding-left: 10px;
+    display: block;
+    padding-left: 10px;
+    height: calc(100% - 4px);
+    border-top: 4px solid #0000;
+    border-radius: 5px 5px 0 0;
+    transition: border-top 200ms;
+}
+
+header .window:hover {
+    border-top: 4px solid #ff0;
+    background: #fff2;
+}
+
+h1.darkmode{
+    font-weight: bold;
+    color: #fff;
+    width: calc(100% - 0);
+    font-size: 24px;
+    border-bottom: solid 1px var(--white);
+}
+
+h1.lightmode{
+    font-weight: bold;
+    color: #fff;
+    width: calc(100% - 0);
+    font-size: 24px;
+    background: linear-gradient(to right, #07a, #0ffa, #0ffa);
+}
+h2{
+    font-weight: bold;
+    color: #fff;
+    width: calc(100% - 0);
+    font-size: 24px;
+    background: linear-gradient(to bottom right, #f21, #f52, #f75);
+}
+h3{
+    font-weight: bold;
+    color: #000;
+    width: calc(100% - 0);
+    font-size: 24px;
+    background: linear-gradient(to bottom right, #1f2, #2f5, #5f7);
+}
+
+button.darkmode, input.darkmode, textarea.darkmode {
+    background: #0003;
+    cursor: pointer;
+    border: none;
+    height: 32px;
+    border-radius: 0;
+}
+button.lightmode, input.lightmode, textarea.lightmode {
+    background: #0003;
+    border: 2px solid #fff1;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 32px;
+}
+
+button.darkmode:hover , input.darkmode:hover {
+    background: var(--white);
+    color: #000;
+    border-radius: 50px;
+}
+
+button.lightmode:hover , input.lightmode:hover {
+    border: 2px solid #0ffa;
+}
+
+input , textarea{
+    cursor: text;
+    background: #0002;
+    color: var(--white);
+}
+textarea{
+    spellcheck: false;
+    cursor: default;
+    height: 100%;
+}
+
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background: #0ff; 
+}
+
+input[type="checkbox"]:checked {
+    background: #fff;
+}
+
+espacio{
+    height: 200px;
+}
+
+.graph{
+    height: auto;
+    width: 100%;
+}
