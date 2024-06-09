@@ -95,7 +95,7 @@ class SubEncoder(JpegEncoder):
 
 
 picam2 = Picamera2()
-conf = picam2.create_video_configuration(main={"size": (1536, 864) } , transform=Transform(vflip=True) )
+conf = picam2.create_video_configuration(main={"size": (1536, 864) } , transform=Transform(vflip=True, hflip=True) )
 picam2.configure(conf)
 #conf["controls"]["FrameDurationLimits"] = (40000,40000)
 #picam2.configure(conf)

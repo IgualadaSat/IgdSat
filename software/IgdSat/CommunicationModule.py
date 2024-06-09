@@ -11,7 +11,7 @@ import subprocess
 # AT+CGPS=1  (Activate GPS)
 
 class CommunicationModule():
-    async def __init__(self) -> None:
+    def __init__(self) -> None:
         self.Signal = [0,0]
         self.CPUTemp = 0
         self.GPS = [0,0,0] # [LAT,LONG,Altitude]
